@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Doc store</title>
+</head>
+<body>
+<a href="{% url 'index' %}">
+<h1>Boutique de Doc </h1>
+</a>
+{% if user.is_authenticated %}
+    {{ user.username }}
+    <br><a href="{% url 'logout' %}"> Déconnexion </a>
+{% else %}
+    <a href="{% url 'signup' %}">Connexion </a> <br>
+    <a href="{% url 'signup' %}">S'incrire </a> <br>
+{% endif %}
+{% if user.carte %}
+<br><a href="{% url 'carte' %}"> Voire le panier ({{user.carte.orders.count}})</a>
+{% endif %}
+{% block content %}
+{% endblock %}
+</body>
+</html>
